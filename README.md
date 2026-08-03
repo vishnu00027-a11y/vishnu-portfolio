@@ -1,18 +1,43 @@
 # clone-website
 
-A Claude Code skill that clones any live website 1:1 (layout, typography, assets, scroll animations, stateful interactions) from nothing but its URL, and proves the fidelity with a scored benchmark instead of claiming it.
+[中文版](README.zh-CN.md)
+
+An agent skill that clones any live website 1:1 (layout, typography, assets, scroll animations, stateful interactions) from nothing but its URL, and proves the fidelity with a scored benchmark instead of claiming it.
 
 The method in one sentence: treat the live site as ground truth you can query, not a picture you eyeball. Pull the real DOM, real CSS tokens, real keyframes, real fonts, and real config data out of the running page, rebuild from those facts, then run the same measurement probe on original and clone and diff the numbers until they converge.
+
+Plain Agent Skills package: a `SKILL.md` plus `references/`, `scripts/`, and `tools/`, with no agent-specific code. It runs on Claude Code, Codex CLI, Cursor, Gemini CLI, opencode, and anything else that reads the standard.
 
 Battle-tested on arc.net, town.com, wisprflow.ai, landonorris.com, creativemarketing.peachweb.io.
 
 ## Install
 
+One line, any agent:
+
 ```bash
-git clone https://github.com/braxtonROSE4/clone-any-website.git ~/.claude/skills/clone-website
+curl -fsSL https://raw.githubusercontent.com/braxtonROSE4/clone-any-website/main/install.sh | sh
 ```
 
-The skill loads on its own when you ask for a clone. Trigger phrases include "clone this website", "rebuild this landing page pixel-perfect", "how does this site do that scroll effect", "复刻这个落地页".
+That installs one copy into `~/.agents/skills/clone-website` (the vendor-neutral location Cursor, Gemini CLI, and opencode read directly) and symlinks it into `~/.claude/skills/` and `~/.codex/skills/` when those exist, so `git pull` updates every agent at once. Re-run the same command to update. `--project [dir]` installs into `<dir>/.agents/skills/` for one project instead of the whole machine.
+
+Manual install works just as well, since the payload is only files:
+
+| Agent | Where to clone it |
+|-------|-------------------|
+| Claude Code | `~/.claude/skills/clone-website` |
+| Codex CLI | `~/.codex/skills/clone-website` (or `$CODEX_HOME/skills/`) |
+| Cursor | `~/.cursor/skills/clone-website`, or `~/.agents/skills/clone-website` |
+| Gemini CLI | `~/.gemini/skills/clone-website`, or `~/.agents/skills/clone-website` |
+| opencode | `~/.config/opencode/skills/clone-website` (it also reads `~/.claude/skills` and `~/.agents/skills`) |
+| Anything that can read files and run shell commands | Clone anywhere, point the agent at `SKILL.md` |
+
+```bash
+git clone https://github.com/braxtonROSE4/clone-any-website.git ~/.agents/skills/clone-website
+```
+
+The destination folder has to be named `clone-website`: agents take the skill name from the folder and require it to match the `name` in the frontmatter. Project-scoped installs use the same layout under a repo, in `.agents/skills/`, `.claude/skills/`, `.codex/skills/`, or `.cursor/skills/`.
+
+Once installed the skill loads on its own when you ask for a clone. Trigger phrases include "clone this website", "rebuild this landing page pixel-perfect", "how does this site do that scroll effect".
 
 ## Runtime dependency
 
@@ -22,15 +47,15 @@ The runtime is not swappable for Playwright or a plain headless Chrome, and the 
 
 ## What the workflow does
 
-| 阶段 | 做什么 |
-|------|--------|
-| Phase 0, setup | 建 `reference/{dom,css,js,screenshots}/` 收侦察产物，后台起固定端口 dev server；探测克隆前先断言 `document.title` 对得上，curl 通不等于浏览器 tab 显示的是你的页面 |
-| Phase 1, static capture | 一次调用抓完 DOM、section 轮廓、CSS/字体/JS 资源清单、scroll-0 全页截图；design token 从 CSS 里 grep，不从截图估；`@font-face` 常由 JS 运行时注入，只能在活页面上用 `document.fonts` + styleSheets 走查取；产品 UI 的假数据去编译后的 JS chunk 里找 config 对象 |
-| Phase 2, motion reverse | 从最便宜的手段开始：先 grep CSS 找 `animation-timeline`，再 `getAnimations({subtree:true})` 拿关键帧和 timeline 类型，再 MutationObserver + 真实滚轮滚动，最后对 sticky 状态机做多深度双向采样 |
-| Phase 3, rebuild | 按站点类型选路线。Webflow/Framer 这类静态导出站用 raw-HTML 镜像（curl 水合前的服务端 HTML 当骨架），Next.js/Remix 这类框架站按 section 拆组件重建 |
-| Phase 4, verify + benchmark | 探针迭代到收敛后跑打分 eval，八个维度对固定阈值，总分低于 90 或任一维度不及格就不算完成 |
-| Phase 5, whole-site | 爬 nav/footer + sitemap 拿页面清单，公共骨架只侦察一次，逐页复刻逐页打分 |
-| Phase 6, publishing | `reference/` 全部排除出仓库，README 写归属声明；公开推送前必须警告商用字体和图片视频的再分发风险 |
+| Phase | What it does |
+|-------|--------------|
+| Phase 0, setup | Create `reference/{dom,css,js,screenshots}/` for recon artifacts, run the dev server on a fixed port in the background. Before probing the clone, assert `document.title` matches: a plausible curl response is not proof the browser tab shows your page |
+| Phase 1, static capture | One invocation grabs the DOM, the section outline, the CSS/font/JS resource lists, and a scroll-0 fullPage screenshot. Design tokens come from grepping the downloaded CSS, never from estimating off screenshots. `@font-face` is often injected by JS at runtime, so fonts have to be read off the live page via `document.fonts` plus a `document.styleSheets` walk. Product-UI mock content comes from config objects inside the compiled JS chunks |
+| Phase 2, motion reverse | Cheapest first: grep the CSS for `animation-timeline`, then `getAnimations({subtree:true})` for keyframes and timeline types, then MutationObserver with a real wheel scroll, and finally multi-depth two-direction sampling for sticky state machines |
+| Phase 3, rebuild | Route chosen by site type. Static-export sites (Webflow, Framer) clone as a raw-HTML mirror built on the pre-hydration server HTML; JS-framework sites (Next.js, Remix) get rebuilt section by section as components |
+| Phase 4, verify and benchmark | Iterate with the probes until convergence, then run the scored eval. Eight dimensions against fixed thresholds; below 90 total or with any failing dimension, the clone is not done |
+| Phase 5, whole-site mode | Crawl nav/footer links plus the sitemap for a page list, recon the shared shell once, then clone and score page by page |
+| Phase 6, publishing | Everything under `reference/` stays out of the repo, the README carries attribution, and any public push gets a warning about redistributing commercial fonts and downloaded media |
 
 ## The benchmark
 
@@ -38,23 +63,25 @@ The runtime is not swappable for Playwright or a plain headless Chrome, and the 
 bash scripts/run_eval.sh https://original.example http://localhost:3400 ./eval-out
 ```
 
-同一个探针跑原站和克隆站，产出 `scorecard.json` + `report.md`，八个维度打分：几何、排版、颜色、资源、字体、动画、mock 内容、视觉相似度。退出码 0 代表通过。需要 `ego-browser` 在 PATH 上、克隆站 dev server 在跑、Pillow 已装（缺了就跳过视觉维度并重新归一总分）。
+The same probe runs against the original and the clone, producing `scorecard.json` and `report.md` scored on eight dimensions: geometry, typography, color, assets, fonts, animations, mock content, visual similarity. Exit code 0 means pass. Requires `ego-browser` on PATH, the clone's dev server running, and Pillow installed (without it the visual dimension is skipped and the total rescales).
 
-两条测量纪律写死在协议里：原站每天都在漂，跑分只对当天探到的那份 `original.json` 有意义，回归掉分先查原站动没动；无限循环动画（GSAP `repeat:-1`、marquee、轮播 auto-scroll）采样前必须相位归一化，否则两侧停在随机循环相位上，探针抖动会被报成 50-2879px 的位置误差。
+Two measurement rules are baked into the protocol. Live originals drift, so a score is only meaningful against the `original.json` probed that same day; when a regression score drops, check whether the original moved before blaming the clone. And infinite time-driven animations (GSAP `repeat:-1`, marquees, auto-scrolling carousels) must be phase-normalized before sampling, or each side lands on a random loop phase and probe-timing jitter gets reported as position error (measured at 50-2879px on wisprflow.ai).
 
 ## Repo layout
 
-| 路径 | 内容 |
-|------|------|
-| `SKILL.md` | 主工作流：执行模型纪律、六个阶段、可证伪的 Correctness rules、探针环境 Caveats 表 |
-| `references/probes.md` | 每个阶段的 ego-browser 探针脚本，直接复制粘贴改 URL 就能跑 |
-| `references/eval.md` | 打分协议：八个维度的算法、阈值、测量条件 |
-| `references/install.md` | ego lite 安装引导 |
-| `references/tool-design-template.md` | 往 `tools/` 里加新工具时的设计模板 |
-| `tools/` | 类型化工具层，`manifest.json` 注册 capture_static / inventory_animations / sample_scroll_states / eval_probe |
-| `scripts/` | `run_eval.sh` 跑分入口、`eval_score.py` 打分器、`slice.py` 按 DOM rect 切全页截图、`install-ego-browser.sh` |
-| `learnings/<site>/` | 具体站点的复刻笔记（选择器、坑、config 对象位置），下次复刻同一个站直接热启动 |
+| Path | What's in it |
+|------|--------------|
+| `SKILL.md` | The main workflow: execution-model discipline, the six phases, falsifiable correctness rules, and a caveats table for probe-environment behavior |
+| `install.sh` | Cross-agent installer: one copy in `~/.agents/skills/`, symlinked into the agents present on the machine |
+| `references/probes.md` | Copy-paste ego-browser probe scripts for each phase; swap the URL and run |
+| `references/eval.md` | Benchmark protocol: the eight dimensions, their algorithms, thresholds, and measurement conditions |
+| `references/install.md` | ego lite install guide |
+| `references/tool-design-template.md` | Design template for adding new tools to `tools/` |
+| `tools/` | Typed tool layer; `manifest.json` registers capture_static, inventory_animations, sample_scroll_states, eval_probe |
+| `scripts/` | `run_eval.sh` benchmark entry point, `eval_score.py` scorer, `slice.py` fullPage screenshot slicer, `install-ego-browser.sh` |
+| `learnings/<site>/` | Per-site clone notes (selectors, quirks, where the config objects live) so the next clone of that site starts warm |
+| `agents/openai.yaml` | Optional Codex display metadata; every other agent ignores it |
 
-## 用之前先想清楚的事
+## Before you use this
 
-复刻出来的东西里，设计、文案、图片、字体的权利都还在原站作者手上。这个 skill 的用途是学习实现方式、做技术研究、复现自己已有权利的页面。公开发布克隆站之前：`reference/` 里抓下来的 DOM/CSS/JS 一律不要进仓库，README 写清楚归属，商用字体文件和原站图片视频要么换开源近似字体、要么 gitignore 掉。字体是最现实的 DMCA 风险点，"非商用" 在仓库或帖子给产品导流时不构成保护。
+The design, copy, imagery, and fonts of anything you clone still belong to the original site's owner. This skill is for studying implementations, technical research, and rebuilding pages you already have rights to. Before publishing a clone: keep the scraped DOM/CSS/JS under `reference/` out of the repo, put attribution in the README, and either swap commercial fonts for open-source near-matches or gitignore them along with the original's imagery and video. Fonts are the realistic DMCA vector, and "non-commercial" is not a shield when the repo or post promotes a product.
