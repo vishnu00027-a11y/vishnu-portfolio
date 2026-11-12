@@ -1,0 +1,177 @@
+[
+  {
+    "title": "Quote Builder",
+    "kind": "Freshworks",
+    "year": "2024",
+    "headline": "Redesigning the Quote Builder at Freshworks",
+    "summary": "Making quote creation simpler for 1,900+ enterprise users.",
+    "details": [
+      {
+        "label": "role",
+        "value": "lead product designer"
+      },
+      {
+        "label": "team",
+        "value": "product management, staff product design"
+      },
+      {
+        "label": "product",
+        "value": "freshsales crm"
+      },
+      {
+        "label": "users",
+        "value": "1,900+ enterprise users"
+      }
+    ]
+  },
+  {
+    "title": "Designfolio",
+    "kind": "Founder",
+    "year": "2024",
+    "headline": "Designfolio: No-Code Portfolio Builder for 9,000+ Users (An Idea I Brought to Life)",
+    "summary": "Helping Product folks build bragworthy portfolio websites.",
+    "details": [
+      {
+        "label": "role",
+        "value": "founder, design & product"
+      },
+      {
+        "label": "team",
+        "value": "3 developers"
+      },
+      {
+        "label": "community",
+        "value": "3,000+ on discord"
+      },
+      {
+        "label": "users",
+        "value": "9,000+"
+      }
+    ]
+  },
+  {
+    "title": "Onboarding",
+    "kind": "MyCaptain",
+    "year": "2023",
+    "headline": "Improved Onboarding, reducing drop-off by 30% for 1M learners",
+    "summary": "At MyCaptain, I led the move from long, discouraging forms to an onboarding that builds a learner's Digital Resume as they go, told through storytelling animation.",
+    "details": [
+      {
+        "label": "role",
+        "value": "design manager"
+      },
+      {
+        "label": "industry",
+        "value": "edtech"
+      },
+      {
+        "label": "platform",
+        "value": "web"
+      },
+      {
+        "label": "tested",
+        "value": "30 users on maze"
+      }
+    ]
+  },
+  {
+    "title": "Soul Design System",
+    "kind": "MyCaptain",
+    "year": "2023",
+    "headline": "Designing a scalable Design System to reduce development time by 40%",
+    "summary": "As Design Manager at MyCaptain, I led the Soul Design System: one design language and a library of reusable components behind every product.",
+    "details": [
+      {
+        "label": "role",
+        "value": "design manager"
+      },
+      {
+        "label": "industry",
+        "value": "edtech"
+      },
+      {
+        "label": "platform",
+        "value": "web app"
+      },
+      {
+        "label": "adoption",
+        "value": "90%+ in six months"
+      }
+    ]
+  },
+  {
+    "title": "Damnnnn",
+    "kind": "Founder",
+    "year": "",
+    "headline": "Building a bite-sized social learning app from zero to 5K active users",
+    "summary": "An app for sharing knowledge nuggets in an intuitive, engaging, and ad-free environment.",
+    "details": [
+      {
+        "label": "role",
+        "value": "founder & lead designer"
+      },
+      {
+        "label": "platform",
+        "value": "mobile app"
+      },
+      {
+        "label": "users",
+        "value": "5,000 active"
+      },
+      {
+        "label": "launch",
+        "value": "top on product hunt"
+      }
+    ]
+  },
+  {
+    "title": "Gamified LMS",
+    "kind": "MyCaptain",
+    "year": "2023",
+    "headline": "Improving Learning outcomes by 25% through gamification.",
+    "summary": "Turning MyCaptain's learning platform from an information repository into an interactive one, with clearer navigation, a weekly task list, a calendar and leaderboards.",
+    "details": [
+      {
+        "label": "role",
+        "value": "design manager & lead"
+      },
+      {
+        "label": "industry",
+        "value": "edtech"
+      },
+      {
+        "label": "research",
+        "value": "40+ interviews"
+      },
+      {
+        "label": "platform",
+        "value": "web app"
+      }
+    ]
+  },
+  {
+    "title": "AI Agent Builder",
+    "kind": "Sense",
+    "year": "2025",
+    "headline": "Designing AI Agents to Help Recruiters Hire Faster",
+    "summary": "Reimagining recruiting automation to reduce manual work, simplify setup, and keep recruiters in control.",
+    "details": [
+      {
+        "label": "role",
+        "value": "staff product designer"
+      },
+      {
+        "label": "scope",
+        "value": "research, product strategy, interaction design"
+      },
+      {
+        "label": "product",
+        "value": "sense \u00c2\u00b7 ai agent builder"
+      },
+      {
+        "label": "result",
+        "value": "75\u00e2\u0080\u009385% less setup time"
+      }
+    ]
+  }
+]
