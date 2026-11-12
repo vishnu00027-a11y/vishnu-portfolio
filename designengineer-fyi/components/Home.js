@@ -573,12 +573,15 @@ export default function Home({ markup }) {
               <button type="button" className="rs-close" onClick={closeResume} aria-label="Close resume">esc</button>
               <span className="rs-title">resume.pdf</span>
               <span className="rs-actions">
-                <a className="rs-action" href="/resume/shai-resume.pdf" download>download</a>
+                <a className="rs-action" href="/resume/vishnu-resume.pdf" download>download</a>
               </span>
             </div>
             <div className="rs-body">
               <div className="rs-page">
-                <img src="/resume/shai-resume.png" alt="Resume" />
+                <img src="/resume/vishnu-resume-1.png" alt="Resume, page 1" />
+              </div>
+              <div className="rs-page">
+                <img src="/resume/vishnu-resume-2.png" alt="Resume, page 2" />
               </div>
             </div>
           </div>
