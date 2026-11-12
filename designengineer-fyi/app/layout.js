@@ -1,9 +1,9 @@
 import "./globals.css"
 
 export const metadata = {
-  title: "Shai Krishna | Design Engineer",
+  title: "Vishnu Kumar | Full Stack Developer",
   description:
-    "Shai here! I'm a Design Engineer who designs products, writes code, and builds things with AI just because I can. Explore my projects, experiments, and interactive experiences.",
+    "Vishnu Kumar is a full stack developer and SDE 2 at Meta. Founder of Shivank Tech and WorkSquare. Shipped 25+ production apps.",
   icons: {
     icon: [
       { url: "/favicon/favicon.ico" },

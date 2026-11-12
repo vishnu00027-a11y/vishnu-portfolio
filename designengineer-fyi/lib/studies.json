@@ -1,177 +1,78 @@
 [
   {
-    "title": "Quote Builder",
-    "kind": "Freshworks",
-    "year": "2024",
-    "headline": "Redesigning the Quote Builder at Freshworks",
-    "summary": "Making quote creation simpler for 1,900+ enterprise users.",
-    "details": [
-      {
-        "label": "role",
-        "value": "lead product designer"
-      },
-      {
-        "label": "team",
-        "value": "product management, staff product design"
-      },
-      {
-        "label": "product",
-        "value": "freshsales crm"
-      },
-      {
-        "label": "users",
-        "value": "1,900+ enterprise users"
-      }
-    ]
-  },
-  {
-    "title": "Designfolio",
+    "title": "WorkSquare",
     "kind": "Founder",
-    "year": "2024",
-    "headline": "Designfolio: No-Code Portfolio Builder for 9,000+ Users (An Idea I Brought to Life)",
-    "summary": "Helping Product folks build bragworthy portfolio websites.",
+    "headline": "WorkSquare, a community-driven career platform",
+    "summary": "Professional networking, jobs, skill-based communities, karma, recruiter tools, AI matching, and interview preparation.",
+    "link": "https://worksquare.co",
+    "linkLabel": "worksquare.co",
     "details": [
-      {
-        "label": "role",
-        "value": "founder, design & product"
-      },
-      {
-        "label": "team",
-        "value": "3 developers"
-      },
-      {
-        "label": "community",
-        "value": "3,000+ on discord"
-      },
-      {
-        "label": "users",
-        "value": "9,000+"
-      }
+      { "label": "role", "value": "founder" },
+      { "label": "product", "value": "career platform" },
+      { "label": "toolkit", "value": "React, Next.js, MongoDB" },
+      { "label": "surface", "value": "web" }
     ]
   },
   {
-    "title": "Onboarding",
-    "kind": "MyCaptain",
-    "year": "2023",
-    "headline": "Improved Onboarding, reducing drop-off by 30% for 1M learners",
-    "summary": "At MyCaptain, I led the move from long, discouraging forms to an onboarding that builds a learner's Digital Resume as they go, told through storytelling animation.",
+    "title": "TradeFlock",
+    "kind": "Network",
+    "headline": "TradeFlock, a fully automated news network",
+    "summary": "A content network that publishes without a manual newsroom in the loop.",
+    "link": "https://tradeflock.net",
+    "linkLabel": "tradeflock.net",
     "details": [
-      {
-        "label": "role",
-        "value": "design manager"
-      },
-      {
-        "label": "industry",
-        "value": "edtech"
-      },
-      {
-        "label": "platform",
-        "value": "web"
-      },
-      {
-        "label": "tested",
-        "value": "30 users on maze"
-      }
+      { "label": "role", "value": "full stack" },
+      { "label": "product", "value": "automated publishing" },
+      { "label": "toolkit", "value": "Next.js, Cloudflare" },
+      { "label": "surface", "value": "web" }
     ]
   },
   {
-    "title": "Soul Design System",
-    "kind": "MyCaptain",
-    "year": "2023",
-    "headline": "Designing a scalable Design System to reduce development time by 40%",
-    "summary": "As Design Manager at MyCaptain, I led the Soul Design System: one design language and a library of reusable components behind every product.",
+    "title": "Nymph",
+    "kind": "Dating",
+    "headline": "Nymph, a dating application",
+    "summary": "A dating product built as an application, from the matching surface through the conversation.",
     "details": [
-      {
-        "label": "role",
-        "value": "design manager"
-      },
-      {
-        "label": "industry",
-        "value": "edtech"
-      },
-      {
-        "label": "platform",
-        "value": "web app"
-      },
-      {
-        "label": "adoption",
-        "value": "90%+ in six months"
-      }
+      { "label": "role", "value": "full stack" },
+      { "label": "product", "value": "dating" },
+      { "label": "toolkit", "value": "Expo, React" },
+      { "label": "surface", "value": "app" }
     ]
   },
   {
-    "title": "Damnnnn",
-    "kind": "Founder",
-    "year": "",
-    "headline": "Building a bite-sized social learning app from zero to 5K active users",
-    "summary": "An app for sharing knowledge nuggets in an intuitive, engaging, and ad-free environment.",
+    "title": "Canvas",
+    "kind": "Editor",
+    "headline": "Canvas, a photo and video editor",
+    "summary": "An editor for photos and video, built as its own application rather than a filter bolted onto a feed.",
     "details": [
-      {
-        "label": "role",
-        "value": "founder & lead designer"
-      },
-      {
-        "label": "platform",
-        "value": "mobile app"
-      },
-      {
-        "label": "users",
-        "value": "5,000 active"
-      },
-      {
-        "label": "launch",
-        "value": "top on product hunt"
-      }
+      { "label": "role", "value": "full stack" },
+      { "label": "product", "value": "photo and video" },
+      { "label": "toolkit", "value": "Expo, React" },
+      { "label": "surface", "value": "app" }
     ]
   },
   {
-    "title": "Gamified LMS",
-    "kind": "MyCaptain",
-    "year": "2023",
-    "headline": "Improving Learning outcomes by 25% through gamification.",
-    "summary": "Turning MyCaptain's learning platform from an information repository into an interactive one, with clearer navigation, a weekly task list, a calendar and leaderboards.",
+    "title": "Documento",
+    "kind": "Documents",
+    "headline": "Documento, an all-in-one document editor",
+    "summary": "One editor for the documents a team actually passes around, instead of a separate tool for every file type.",
     "details": [
-      {
-        "label": "role",
-        "value": "design manager & lead"
-      },
-      {
-        "label": "industry",
-        "value": "edtech"
-      },
-      {
-        "label": "research",
-        "value": "40+ interviews"
-      },
-      {
-        "label": "platform",
-        "value": "web app"
-      }
+      { "label": "role", "value": "full stack" },
+      { "label": "product", "value": "document editor" },
+      { "label": "toolkit", "value": "React, Next.js" },
+      { "label": "surface", "value": "web" }
     ]
   },
   {
-    "title": "AI Agent Builder",
-    "kind": "Sense",
-    "year": "2025",
-    "headline": "Designing AI Agents to Help Recruiters Hire Faster",
-    "summary": "Reimagining recruiting automation to reduce manual work, simplify setup, and keep recruiters in control.",
+    "title": "Booking systems",
+    "kind": "Appointments",
+    "headline": "Booking systems for appointment businesses",
+    "summary": "Product work for dentists, doctors, barbers, plumbers, and other businesses that live and die by the next appointment.",
     "details": [
-      {
-        "label": "role",
-        "value": "staff product designer"
-      },
-      {
-        "label": "scope",
-        "value": "research, product strategy, interaction design"
-      },
-      {
-        "label": "product",
-        "value": "sense \u00c2\u00b7 ai agent builder"
-      },
-      {
-        "label": "result",
-        "value": "75\u00e2\u0080\u009385% less setup time"
-      }
+      { "label": "role", "value": "product development" },
+      { "label": "product", "value": "booking" },
+      { "label": "toolkit", "value": "Ruby on Rails, Next.js" },
+      { "label": "surface", "value": "web" }
     ]
   }
 ]

@@ -3,12 +3,11 @@
 import { useEffect, useRef, useState } from "react"
 import { CARDS, cardMedia } from "../lib/cards"
 import { loadIntroRuntime } from "../lib/boot-intro"
+import { loadPondRuntime } from "../lib/boot-pond"
 import { INTRO_SCREEN } from "../lib/intro-screen"
 import { mountStage } from "../lib/stage"
 import { TREE_COLS, frameAt, restFrame, treeLabel } from "../lib/tree"
 import studies from "../lib/studies.json"
-
-const FRAMES = ["0% 0%", "50% 0%", "100% 0%", "0% 50%", "50% 50%", "100% 50%", "0% 100%", "50% 100%", "100% 100%"]
 
 const BOT = /bot|crawl|spider|slurp|lighthouse|inspectiontool|bingpreview|facebookexternalhit|embedly|preview/i
 
@@ -57,6 +56,16 @@ function OutIcon() {
   )
 }
 
+function RowIcon({ children }) {
+  return (
+    <span className="contact-row-icon">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        {children}
+      </svg>
+    </span>
+  )
+}
+
 function Chevron() {
   return (
     <svg className="contact-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -74,7 +83,9 @@ export default function Home({ markup }) {
   const knobRef = useRef(null)
   const stopsRef = useRef(null)
   const treeRef = useRef(null)
-  const [frame, setFrame] = useState(4)
+  const mascotRef = useRef(null)
+  const mascotBodyRef = useRef(null)
+  const mascotPhotoRef = useRef(null)
   const [contactOpen, setContactOpen] = useState(false)
   const [copied, setCopied] = useState(false)
   const [resumeOpen, setResumeOpen] = useState(false)
@@ -128,6 +139,77 @@ export default function Home({ markup }) {
     return () => {
       cancelled = true
       stop()
+    }
+  }, [])
+
+  useEffect(() => {
+    const canvas = document.querySelector("canvas.pond")
+    if (!canvas) return
+    const root = document.documentElement
+    let stop = () => {}
+    let cancelled = false
+    const start = () => {
+      if (cancelled || root.dataset.intro === "on") return
+      loadPondRuntime()
+        .then((pond) => {
+          if (cancelled || !pond.canRunPond()) return
+          stop = pond.mountPond(canvas) || (() => {})
+        })
+        .catch(() => {})
+    }
+    const observer = new MutationObserver(start)
+    observer.observe(root, { attributes: true, attributeFilter: ["data-intro"] })
+    start()
+    return () => {
+      cancelled = true
+      observer.disconnect()
+      stop()
+    }
+  }, [])
+
+  useEffect(() => {
+    const el = mascotRef.current
+    const photo = mascotPhotoRef.current
+    if (!el || !photo) return
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches
+    if (reduced) return
+    const fine = matchMedia("(hover: hover) and (pointer: fine)").matches
+    if (fine) {
+      const onMove = (event) => {
+        const box = el.getBoundingClientRect()
+        const dx = event.clientX - (box.left + box.width / 2)
+        const dy = event.clientY - (box.top + box.height / 2)
+        const dist = Math.hypot(dx, dy)
+        if (dist < 70) {
+          photo.style.transform = "translate(0px, 0px)"
+          return
+        }
+        const mag = Math.min(5, dist / 80)
+        photo.style.transform = `translate(${((dx / dist) * mag).toFixed(2)}px, ${((dy / dist) * mag * 0.55).toFixed(2)}px)`
+      }
+      addEventListener("pointermove", onMove, { passive: true })
+      return () => removeEventListener("pointermove", onMove)
+    }
+    const path = [4, 2, -2, -4, -2, 2]
+    let index = 0
+    let timer = 0
+    let visible = false
+    const step = () => {
+      if (visible && !document.hidden) {
+        const x = path[index % path.length]
+        index += 1
+        photo.style.transform = `translate(${x}px, 0px)`
+      }
+      timer = window.setTimeout(step, 1100 + Math.random() * 500)
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = !!entry?.isIntersecting
+    })
+    observer.observe(el)
+    timer = window.setTimeout(step, 900)
+    return () => {
+      clearTimeout(timer)
+      observer.disconnect()
     }
   }, [])
 
@@ -212,10 +294,11 @@ export default function Home({ markup }) {
       }
       if (root.dataset.project === "open" || root.dataset.resume === "open" || contactOpen) return
       const key = event.key.toLowerCase()
-      if (key === "l") window.open("https://www.linkedin.com/in/shaiii/", "_blank", "noopener")
+      if (key === "l") window.open("https://www.linkedin.com/in/vishnu-jaiswal-528905162", "_blank", "noopener")
       if (key === "r") openResume()
       if (key === "c") copyEmail()
-      if (key === "m") window.open("https://topmate.io/shai", "_blank", "noopener")
+      if (key === "x") window.open("https://www.x.com/drsunlocked", "_blank", "noopener")
+      if (key === "g") window.open("https://github.com/vishnu00027-a11y", "_blank", "noopener")
     }
     window.addEventListener("keydown", onKey)
     return () => window.removeEventListener("keydown", onKey)
@@ -241,9 +324,23 @@ export default function Home({ markup }) {
     setResumeOpen(false)
   }
 
+  function boop() {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return
+    mascotBodyRef.current?.animate(
+      [
+        { transform: "scale(1, 1)", easing: "ease-in" },
+        { transform: "scale(1.08, 0.9)", offset: 0.18, easing: "ease-out" },
+        { transform: "scale(0.96, 1.06)", offset: 0.45, easing: "ease-in-out" },
+        { transform: "scale(1.02, 0.98)", offset: 0.72, easing: "ease-in-out" },
+        { transform: "scale(1, 1)" },
+      ],
+      { duration: 420, easing: "linear" },
+    )
+  }
+
   async function copyEmail() {
     try {
-      await navigator.clipboard.writeText("heyfromshai@gmail.com")
+      await navigator.clipboard.writeText("Vishnu00027@gmail.com")
     } catch {
       /* clipboard can be blocked */
     }
@@ -261,48 +358,28 @@ export default function Home({ markup }) {
         <div className="intro-layer" ref={introRef}>
           <section className="intro">
             <svg className="signature" viewBox="80 20 1240 330" fill="none" stroke="currentColor" strokeWidth="13" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M300 40 C285 135 250 235 215 330" style={{ "--len": "302.7", "--dur": "0.178s", "--delay": "0.350s" }} />
-              <path d="M560 45 C470 85 360 140 278 172 C338 190 395 225 432 258 C447 272 462 258 472 238 C484 213 492 190 507 178 C520 168 530 180 540 186 C552 192 567 186 580 178 C588 198 592 220 606 218 C620 216 630 196 638 180 C644 168 660 164 668 172 C678 183 664 202 648 212 C672 214 696 204 714 190 C752 150 795 85 820 44 C832 24 816 18 802 38 C780 75 762 150 748 222 C764 196 784 174 804 174 C822 174 820 200 828 216 C834 228 854 222 872 208 C960 175 1100 168 1300 175" style={{ "--len": "1976.5", "--dur": "1.163s", "--delay": "0.628s" }} />
+              <path d="M250 70 C270 150 300 240 255 310" />
+              <path d="M270 130 C330 70 360 160 410 190 C455 218 420 262 475 238 C540 200 560 145 620 172 C675 198 650 255 715 228 C790 190 840 145 910 175 C980 205 1020 155 1100 148" />
             </svg>
             <header className="header">
-              <button type="button" className="mascot" aria-label="Boop Krish" style={{ width: 104, height: 104 }} onClick={() => setFrame((n) => (n + 1) % FRAMES.length)}>
-                <span className="mascot-body">
-                  <span className="mascot-frames" style={{ backgroundImage: "url(/mascot/krish-directions.webp)", backgroundPosition: FRAMES[frame] }} />
+              <button type="button" className="mascot" ref={mascotRef} aria-label="Boop Vishnu" style={{ width: 104, height: 104 }} onClick={boop}>
+                <span className="mascot-body" ref={mascotBodyRef}>
+                  <img ref={mascotPhotoRef} className="mascot-photo" src="/mascot/vishnu.png" alt="" />
                 </span>
               </button>
               <div>
-                <h1 className="name">Shai Krishna</h1>
+                <h1 className="name">Vishnu Kumar</h1>
                 <p className="tagline">
-                  Staff Product Designer & <span className="nowrap">Design Engineer</span>
+                  Full Stack Developer / <span className="nowrap">SDE 2 at Meta</span>
                 </p>
               </div>
             </header>
             <p className="bio">
-              I{" "}
-              <span className="pill">
-                <svg className="pill-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--icon)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M4 20l1.2-4.3L15.6 5.3a2.1 2.1 0 0 1 3 3L8.3 18.8 4 20Z" />
-                  <path d="M13.6 7.3l3 3" />
-                </svg>
-                design products
-              </span>
-              ,{" "}
-              <span className="pill">
-                <svg className="pill-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--icon)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M8.5 7 3.5 12l5 5" />
-                  <path d="m15.5 7 5 5-5 5" />
-                </svg>
-                write code
-              </span>
-              , and occasionally build things with{" "}
-              <span className="pill">
-                <svg className="pill-icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-                  <path fill="var(--text-strong)" d="M10 3c.7 4.4 2.6 6.3 7 7-4.4.7-6.3 2.6-7 7-.7-4.4-2.6-6.3-7-7 4.4-.7 6.3-2.6 7-7Z" />
-                  <path fill="var(--text-strong)" fillOpacity="0.75" d="M18 14c.35 2.1 1.15 2.9 3.25 3.25-2.1.35-2.9 1.15-3.25 3.25-.35-2.1-1.15-2.9-3.25-3.25 2.1-.35 2.9-1.15 3.25-3.25Z" />
-                </svg>
-                AI
-              </span>{" "}
-              that nobody asked for.
+              Seasoned development professional. Shipped{" "}
+              <span className="pill">25+ production apps</span>, doing{" "}
+              <span className="pill">$10K+ MRR</span>, founder of{" "}
+              <span className="pill">Shivank Tech</span> and{" "}
+              <span className="pill">WorkSquare</span>.
             </p>
             <pre className="tree" ref={treeRef} role="img" aria-label={treeLabel} style={{ "--cols": TREE_COLS }}>
               {restFrame()}
@@ -370,27 +447,51 @@ export default function Home({ markup }) {
               <div className="contact-ways">
                 <ul id="contact-ways" className="contact-list">
                   <li>
-                    <a className="contact-row" href="https://www.linkedin.com/in/shaiii/" target="_blank" rel="noopener">
-                      <span className="contact-row-label">linkedin</span>
-                      <span className="contact-kbd">L</span>
+                    <a className="contact-row" href="https://www.linkedin.com/in/vishnu-jaiswal-528905162" target="_blank" rel="noopener">
+                      <RowIcon>
+                        <rect x="3.5" y="3.5" width="17" height="17" rx="4" />
+                        <path d="M8 10.5V16M8 7.75v.01M11.5 16v-5.5M11.5 13c0-1.5 1-2.5 2.5-2.5s2.5 1 2.5 2.5v3" />
+                      </RowIcon>
+                      <span className="contact-row-label">LinkedIn</span>
+                      <kbd className="contact-kbd">L</kbd>
                     </a>
                   </li>
                   <li>
                     <button type="button" className="contact-row" onClick={openResume}>
-                      <span className="contact-row-label">resume</span>
-                      <span className="contact-kbd">R</span>
+                      <RowIcon>
+                        <path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8Z" />
+                        <path d="M14 3.5V8h4.5M9 12.5h6M9 16h4" />
+                      </RowIcon>
+                      <span className="contact-row-label">Resume</span>
+                      <kbd className="contact-kbd">R</kbd>
                     </button>
                   </li>
                   <li>
                     <button type="button" className="contact-row" onClick={copyEmail}>
-                      <span className="contact-row-label">copy email</span>
-                      <span className="contact-kbd">C</span>
+                      <RowIcon>
+                        <rect x="8.5" y="8.5" width="11.5" height="11.5" rx="2.5" />
+                        <path d="M15.5 8.5V6.5a2.5 2.5 0 0 0-2.5-2.5H6.5A2.5 2.5 0 0 0 4 6.5V13a2.5 2.5 0 0 0 2.5 2.5h2" />
+                      </RowIcon>
+                      <span className="contact-row-label">Email</span>
+                      <kbd className="contact-kbd">C</kbd>
                     </button>
                   </li>
                   <li>
-                    <a className="contact-row" href="https://topmate.io/shai" target="_blank" rel="noopener">
-                      <span className="contact-row-label">1:1 mentorship</span>
-                      <span className="contact-kbd">M</span>
+                    <a className="contact-row" href="https://www.x.com/drsunlocked" target="_blank" rel="noopener">
+                      <RowIcon>
+                        <path d="M5 5.5 19 18.5M19 5.5 5 18.5" />
+                      </RowIcon>
+                      <span className="contact-row-label">X</span>
+                      <kbd className="contact-kbd">X</kbd>
+                    </a>
+                  </li>
+                  <li>
+                    <a className="contact-row" href="https://github.com/vishnu00027-a11y" target="_blank" rel="noopener">
+                      <RowIcon>
+                        <path d="M9 19c-4 1.5-4-2.5-6-3m12 6v-3.9a3.1 3.1 0 0 0-.9-2.4c3-.3 6.1-1.5 6.1-6.6a5.1 5.1 0 0 0-1.4-3.5 4.8 4.8 0 0 0-.1-3.5s-1.1-.3-3.5 1.3a12.1 12.1 0 0 0-6.2 0C6.4 2.8 5.3 3.1 5.3 3.1a4.8 4.8 0 0 0-.1 3.5 5.1 5.1 0 0 0-1.4 3.6c0 5 3.1 6.2 6.1 6.6a3.1 3.1 0 0 0-.9 2.4V22" />
+                      </RowIcon>
+                      <span className="contact-row-label">GitHub</span>
+                      <kbd className="contact-kbd">G</kbd>
                     </a>
                   </li>
                 </ul>
@@ -456,6 +557,9 @@ export default function Home({ markup }) {
               ) : null}
               <div className="pv-foot">
                 <button type="button" onClick={closeProject}>back</button>
+                {project.study?.link ? (
+                  <a href={project.study.link} target="_blank" rel="noopener">{project.study.linkLabel}</a>
+                ) : null}
               </div>
             </div>
           </div>
@@ -474,7 +578,7 @@ export default function Home({ markup }) {
             </div>
             <div className="rs-body">
               <div className="rs-page">
-                <img src="/resume/shai-resume.png" alt="Shai Krishna resume" />
+                <img src="/resume/shai-resume.png" alt="Resume" />
               </div>
             </div>
           </div>

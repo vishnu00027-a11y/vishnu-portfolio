@@ -1,17 +1,15 @@
 const ROLES = [
-  { company: "servicenow", title: "staff product designer, ai", from: "mar 2026", to: "sep 2026", length: "7 mos" },
-  { company: "sense", title: "staff product designer, ai & new initiatives", from: "jul 2024", to: "mar 2026", length: "1 yr 9 mos" },
-  { company: "freshworks", title: "lead product designer, crm (freshsales)", from: "dec 2023", to: "jul 2024", length: "8 mos" },
-  { company: "mycaptain", title: "head of design", from: "nov 2022", to: "sep 2023", length: "11 mos" },
-  { company: "alfheimr.tech", title: "lead product designer / founder (acquired)", from: "oct 2018", to: "nov 2022", length: "4 yrs 2 mos" },
+  { company: "meta", title: "full stack developer / sde 2", note: "current" },
+  { company: "shivank.tech", title: "founder", note: "web and app studio" },
+  { company: "worksquare.co", title: "founder", note: "career platform" },
 ]
 
 const nodes = ROLES.map((role) => ({
   name: `${role.company}/`,
-  kids: [role.title, `${role.from} – ${role.to} · ${role.length}`],
+  kids: [role.title, role.note],
 }))
 
-const footer = `${ROLES.length} companies · since ${ROLES[ROLES.length - 1].from.split(" ")[1]}`
+const footer = "3 roles · english · hindi"
 
 export const TREE_COLS = Math.max(
   footer.length,
@@ -78,4 +76,4 @@ export function frameAt(time) {
   return film.frames[i].text
 }
 
-export const treeLabel = `Experience: ${ROLES.map((role) => `${role.title} at ${role.company}, ${role.from} to ${role.to}`).join("; ")}`
+export const treeLabel = `Experience: ${ROLES.map((role) => `${role.title} at ${role.company}`).join("; ")}. English and Hindi.`
