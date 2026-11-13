@@ -364,7 +364,7 @@ export default function Home({ markup }) {
             <header className="header">
               <button type="button" className="mascot" ref={mascotRef} aria-label="Boop Vishnu" style={{ width: 104, height: 104 }} onClick={boop}>
                 <span className="mascot-body" ref={mascotBodyRef}>
-                  <img ref={mascotPhotoRef} className="mascot-photo" src="/mascot/vishnu.png" alt="" />
+                  <img ref={mascotPhotoRef} className="mascot-photo" src="/mascot/vishnu.webp" alt="" />
                 </span>
               </button>
               <div>
@@ -403,7 +403,10 @@ export default function Home({ markup }) {
                 <span className="card-media">
                   {card.video ? (
                     <span className="loop-video">
-                      <video poster={card.poster} muted autoPlay loop playsInline preload="none" aria-label={card.title} src={card.video} />
+                      <video poster={card.poster} muted autoPlay loop playsInline preload="none" aria-label={card.title}>
+                        {card.videoWebm ? <source src={card.videoWebm} type="video/webm" /> : null}
+                        <source src={card.video} type="video/mp4" />
+                      </video>
                     </span>
                   ) : (
                     <img alt={card.title} draggable="false" src={card.image} />
@@ -532,7 +535,10 @@ export default function Home({ markup }) {
             <div className="pv-column">
               <div className="pv-hero" data-landed="">
                 {project.card.video ? (
-                  <video src={project.card.video} poster={project.card.poster} muted autoPlay loop playsInline />
+                  <video poster={project.card.poster} muted autoPlay loop playsInline preload="none">
+                    {project.card.videoWebm ? <source src={project.card.videoWebm} type="video/webm" /> : null}
+                    <source src={project.card.video} type="video/mp4" />
+                  </video>
                 ) : (
                   <img src={project.card.image} alt={project.card.title} />
                 )}
@@ -578,10 +584,10 @@ export default function Home({ markup }) {
             </div>
             <div className="rs-body">
               <div className="rs-page">
-                <img src="/resume/vishnu-resume-1.png" alt="Resume, page 1" />
+                <img src="/resume/vishnu-resume-1.webp" alt="Resume, page 1" />
               </div>
               <div className="rs-page">
-                <img src="/resume/vishnu-resume-2.png" alt="Resume, page 2" />
+                <img src="/resume/vishnu-resume-2.webp" alt="Resume, page 2" />
               </div>
             </div>
           </div>
