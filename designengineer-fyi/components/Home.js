@@ -364,7 +364,7 @@ export default function Home({ markup }) {
             <header className="header">
               <button type="button" className="mascot" ref={mascotRef} aria-label="Boop Vishnu" style={{ width: 104, height: 104 }} onClick={boop}>
                 <span className="mascot-body" ref={mascotBodyRef}>
-                  <img ref={mascotPhotoRef} className="mascot-photo" src="/mascot/vishnu.png" alt="" />
+                  <img ref={mascotPhotoRef} className="mascot-photo" src="/mascot/vishnu.webp" alt="" />
                 </span>
               </button>
               <div>
@@ -578,10 +578,10 @@ export default function Home({ markup }) {
             </div>
             <div className="rs-body">
               <div className="rs-page">
-                <img src="/resume/vishnu-resume-1.png" alt="Resume, page 1" />
+                <img src="/resume/vishnu-resume-1.webp" alt="Resume, page 1" />
               </div>
               <div className="rs-page">
-                <img src="/resume/vishnu-resume-2.png" alt="Resume, page 2" />
+                <img src="/resume/vishnu-resume-2.webp" alt="Resume, page 2" />
               </div>
             </div>
           </div>
