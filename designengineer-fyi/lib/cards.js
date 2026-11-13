@@ -5,7 +5,10 @@ export const CARDS = [
     href: "/projects/worksquare",
     slug: "worksquare",
     eyebrow: "~/founder · worksquare.co",
-    image: "/projects/worksquare/poster.svg",
+    image: "/projects/worksquare/thumb-loop-poster.webp",
+    poster: "/projects/worksquare/thumb-loop-poster.jpg",
+    video: "/projects/worksquare/thumb-loop.mp4",
+    videoWebm: "/projects/worksquare/thumb-loop.webm",
   },
   {
     title: "TradeFlock",
@@ -13,7 +16,10 @@ export const CARDS = [
     href: "/projects/tradeflock",
     slug: "tradeflock",
     eyebrow: "~/network · tradeflock.net",
-    image: "/projects/tradeflock/poster.svg",
+    image: "/projects/tradeflock/thumb-loop-poster.webp",
+    poster: "/projects/tradeflock/thumb-loop-poster.jpg",
+    video: "/projects/tradeflock/thumb-loop.mp4",
+    videoWebm: "/projects/tradeflock/thumb-loop.webm",
   },
   {
     title: "Nymph",

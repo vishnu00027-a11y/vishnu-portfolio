@@ -403,7 +403,10 @@ export default function Home({ markup }) {
                 <span className="card-media">
                   {card.video ? (
                     <span className="loop-video">
-                      <video poster={card.poster} muted autoPlay loop playsInline preload="none" aria-label={card.title} src={card.video} />
+                      <video poster={card.poster} muted autoPlay loop playsInline preload="none" aria-label={card.title}>
+                        {card.videoWebm ? <source src={card.videoWebm} type="video/webm" /> : null}
+                        <source src={card.video} type="video/mp4" />
+                      </video>
                     </span>
                   ) : (
                     <img alt={card.title} draggable="false" src={card.image} />
@@ -532,7 +535,10 @@ export default function Home({ markup }) {
             <div className="pv-column">
               <div className="pv-hero" data-landed="">
                 {project.card.video ? (
-                  <video src={project.card.video} poster={project.card.poster} muted autoPlay loop playsInline />
+                  <video poster={project.card.poster} muted autoPlay loop playsInline preload="none">
+                    {project.card.videoWebm ? <source src={project.card.videoWebm} type="video/webm" /> : null}
+                    <source src={project.card.video} type="video/mp4" />
+                  </video>
                 ) : (
                   <img src={project.card.image} alt={project.card.title} />
                 )}
