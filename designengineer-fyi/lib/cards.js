@@ -33,11 +33,14 @@ export const CARDS = [
     videoWebm: "/projects/peopleofla/thumb-loop.webm",
   },
   {
-    title: "Nymph",
-    kind: "Dating",
-    href: "/projects/nymph",
-    slug: "nymph",
-    image: "/projects/nymph/poster.svg",
+    title: "Documento",
+    kind: "Documents",
+    href: "/projects/documento",
+    slug: "documento",
+    image: "/projects/documento/thumb-loop-poster.webp",
+    poster: "/projects/documento/thumb-loop-poster.jpg",
+    video: "/projects/documento/thumb-loop.mp4",
+    videoWebm: "/projects/documento/thumb-loop.webm",
   },
   {
     title: "Canvas",
@@ -45,13 +48,6 @@ export const CARDS = [
     href: "/projects/canvas",
     slug: "canvas",
     image: "/projects/canvas/poster.svg",
-  },
-  {
-    title: "Documento",
-    kind: "Documents",
-    href: "/projects/documento",
-    slug: "documento",
-    image: "/projects/documento/poster.svg",
   },
   {
     title: "Booking systems",

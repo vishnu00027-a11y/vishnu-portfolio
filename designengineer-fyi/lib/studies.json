@@ -35,15 +35,15 @@
     "linkLabel": "peopleofla.online"
   },
   {
-    "title": "Nymph",
-    "kind": "Dating",
-    "headline": "Nymph, a dating application",
-    "summary": "A dating product built as an application, from the matching surface through the conversation.",
+    "title": "Documento",
+    "kind": "Documents",
+    "headline": "Documento, an all-in-one document editor",
+    "summary": "One editor for the documents a team actually passes around, instead of a separate tool for every file type.",
     "details": [
       { "label": "role", "value": "full stack" },
-      { "label": "product", "value": "dating" },
-      { "label": "toolkit", "value": "Expo, React" },
-      { "label": "surface", "value": "app" }
+      { "label": "product", "value": "document editor" },
+      { "label": "toolkit", "value": "React, Next.js" },
+      { "label": "surface", "value": "web" }
     ]
   },
   {
@@ -56,18 +56,6 @@
       { "label": "product", "value": "photo and video" },
       { "label": "toolkit", "value": "Expo, React" },
       { "label": "surface", "value": "app" }
-    ]
-  },
-  {
-    "title": "Documento",
-    "kind": "Documents",
-    "headline": "Documento, an all-in-one document editor",
-    "summary": "One editor for the documents a team actually passes around, instead of a separate tool for every file type.",
-    "details": [
-      { "label": "role", "value": "full stack" },
-      { "label": "product", "value": "document editor" },
-      { "label": "toolkit", "value": "React, Next.js" },
-      { "label": "surface", "value": "web" }
     ]
   },
   {
