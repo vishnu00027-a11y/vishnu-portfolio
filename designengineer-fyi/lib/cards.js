@@ -22,6 +22,17 @@ export const CARDS = [
     videoWebm: "/projects/tradeflock/thumb-loop.webm",
   },
   {
+    title: "People of LA",
+    kind: "Live site",
+    href: "/projects/peopleofla",
+    slug: "peopleofla",
+    eyebrow: "~/build · peopleofla.online",
+    image: "/projects/peopleofla/thumb-loop-poster.webp",
+    poster: "/projects/peopleofla/thumb-loop-poster.jpg",
+    video: "/projects/peopleofla/thumb-loop.mp4",
+    videoWebm: "/projects/peopleofla/thumb-loop.webm",
+  },
+  {
     title: "Nymph",
     kind: "Dating",
     href: "/projects/nymph",
