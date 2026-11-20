@@ -57,8 +57,11 @@ export const CARDS = [
     kind: "Appointments",
     href: "/projects/booking-systems",
     slug: "booking-systems",
-    eyebrow: "~/build · dentists, clinics, trades",
-    image: "/projects/booking/poster.svg",
+    eyebrow: "~/build · custom, per client",
+    image: "/projects/booking/thumb-loop-poster.webp",
+    poster: "/projects/booking/thumb-loop-poster.jpg",
+    video: "/projects/booking/thumb-loop.mp4",
+    videoWebm: "/projects/booking/thumb-loop.webm",
   },
 ]
 

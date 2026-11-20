@@ -226,8 +226,8 @@
   {
     "title": "Booking systems",
     "kind": "Appointments",
-    "headline": "Custom booking systems, built to each customer's needs",
-    "summary": "Through Shivank Tech, I build custom booking systems for local appointment businesses, fitted to how each customer actually takes work: dentists, salons and spas, plumbers, and similar shops.",
+    "headline": "Custom booking systems, built to each client's needs",
+    "summary": "Through Shivank Tech, I build custom booking systems for local appointment businesses, fitted to how each client actually takes work: dentists, salons and spas, plumbers, and similar shops.",
     "details": [
       { "label": "role", "value": "product development" },
       { "label": "product", "value": "booking" },
@@ -237,25 +237,37 @@
       {
         "title": "Overview",
         "body": [
-          "Shivank Tech is my web and app studio. A large part of that work is booking systems for local businesses that run on appointments.",
-          "I do not ship one generic scheduler and hope it fits. Each system is built around that customer's needs: who they serve, how they take bookings, and what has to happen after a slot is taken."
+          "Shivank Tech is my web and app studio. A large part of that work is custom booking systems for local businesses that run on appointments.",
+          "I do not ship one generic scheduler and hope it fits. Each system is built around that client's needs: who they serve, how they take bookings, and what has to happen after a slot is taken."
         ]
       },
       {
         "title": "The problem",
-        "body": "Dentists, clinics, salons, spas, plumbers, and other trades live and die by the next appointment. When booking is buried in a phone call or a generic form, they miss work, double-book, and spend the day chasing confirmations instead of doing the job."
+        "body": "Dentists, clinics, salons, spas, plumbers, and other trades live and die by the next appointment. When booking is buried in a phone call or a generic form, they miss work, double-book, and spend the day chasing confirmations instead of doing the job. A generic scheduler can get a client part of the way there, but it rarely matches how that shop actually runs staff, rooms, payments, and follow-up."
       },
       {
         "title": "What it does",
-        "body": "I design and build the booking product around the business in front of me. That can mean a site a patient or customer can use to request or confirm a time, and the operational pieces that business needs behind it. The exact shape changes with the customer, which is the point."
+        "body": "I design and build the booking product around the business in front of me. The exact shape changes with the client. Typical systems I build include:",
+        "items": [
+          "A salon or clinic appointment calendar, with staff in columns and time slots down the day, so the front desk can see who is free and avoid double-booking.",
+          "A customer-facing slot picker and checkout, so a client can choose a service, pick an open time, and confirm or pay without a phone call.",
+          "An admin dashboard for the day: today's bookings, who has arrived, no-shows, and what has been collected, with the work that still needs attention.",
+          "A client CRM: a searchable list of people, each with a profile and a history of visits, so the business can pick up where the last appointment left off.",
+          "Resource, room, or table booking, when the constraint is a space rather than a person: a treatment room, a private dining room, or a floor of tables.",
+          "Payments and invoices, plus reminder settings so the business can send visit reminders over WhatsApp or SMS, and follow up after a missed visit."
+        ]
+      },
+      {
+        "title": "Tech stack",
+        "body": "I build these systems with Next.js, Supabase, and Vercel. Payments go through a payment gateway, and reminders go out through WhatsApp or SMS integrations, wired to the client's own booking rules rather than a one-size-fits-all stack."
       },
       {
         "title": "My role",
-        "body": "I lead this work at Shivank Tech: understand the customer's booking problem, then build a system that matches it."
+        "body": "I lead this work at Shivank Tech: understand the client's booking problem, then design and build a system that matches it, from the public booking flow to the desk tools they use every day."
       },
       {
         "title": "Outcome",
-        "body": "This is ongoing product work at Shivank Tech for local appointment businesses. Named live examples belong with the customers those systems were built for, and I will add them here as I can show them properly."
+        "body": "This is ongoing product work at Shivank Tech for local appointment businesses. Each system is a separate build, shaped to that client, and stays with them as their booking tool."
       }
     ]
   }
