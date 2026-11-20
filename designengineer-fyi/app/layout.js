@@ -3,7 +3,7 @@ import "./globals.css"
 export const metadata = {
   title: "Vishnu Kumar | Full Stack Developer",
   description:
-    "Vishnu Kumar is a full stack developer and SDE 2 at Meta. Founder of Shivank Tech and WorkSquare. Shipped 25+ production apps.",
+    "Vishnu Kumar is a full stack developer. Ex Scale AI and Meta. Founder of Shivank Tech and WorkSquare. Shipped 25+ production apps.",
   icons: {
     icon: [
       { url: "/favicon/favicon.ico" },

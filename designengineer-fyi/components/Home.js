@@ -74,6 +74,32 @@ function Chevron() {
   )
 }
 
+function StudySections({ sections }) {
+  if (!sections?.length) return null
+  return (
+    <div className="pv-story">
+      {sections.map((section) => {
+        const paras = Array.isArray(section.body) ? section.body : section.body ? [section.body] : []
+        return (
+          <section key={section.title}>
+            <h3 className="pv-h">{section.title}</h3>
+            {paras.map((paragraph) => (
+              <p key={paragraph} className="pv-p">{paragraph}</p>
+            ))}
+            {section.items?.length ? (
+              <ul className="pv-list">
+                {section.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            ) : null}
+          </section>
+        )
+      })}
+    </div>
+  )
+}
+
 export default function Home({ markup }) {
   const rootRef = useRef(null)
   const introRef = useRef(null)
@@ -88,7 +114,6 @@ export default function Home({ markup }) {
   const mascotPhotoRef = useRef(null)
   const [contactOpen, setContactOpen] = useState(false)
   const [copied, setCopied] = useState(false)
-  const [resumeOpen, setResumeOpen] = useState(false)
   const [project, setProject] = useState(null)
 
   useEffect(() => {
@@ -288,14 +313,12 @@ export default function Home({ markup }) {
       if (root.dataset.intro === "on") return
       if (event.key === "Escape") {
         if (root.dataset.project === "open") closeProject()
-        else if (root.dataset.resume === "open") closeResume()
         else if (contactOpen) setContactOpen(false)
         return
       }
-      if (root.dataset.project === "open" || root.dataset.resume === "open" || contactOpen) return
+      if (root.dataset.project === "open" || contactOpen) return
       const key = event.key.toLowerCase()
       if (key === "l") window.open("https://www.linkedin.com/in/vishnu-jaiswal-528905162", "_blank", "noopener")
-      if (key === "r") openResume()
       if (key === "c") copyEmail()
       if (key === "x") window.open("https://www.x.com/drsunlocked", "_blank", "noopener")
       if (key === "g") window.open("https://github.com/vishnu00027-a11y", "_blank", "noopener")
@@ -309,19 +332,6 @@ export default function Home({ markup }) {
     delete document.documentElement.dataset.projectMotion
     setProject(null)
     if (location.pathname.startsWith("/projects/")) history.pushState({}, "", "/")
-  }
-
-  function openResume() {
-    document.documentElement.dataset.resumeMotion = ""
-    document.documentElement.dataset.resume = "open"
-    setResumeOpen(true)
-    setContactOpen(false)
-  }
-
-  function closeResume() {
-    delete document.documentElement.dataset.resume
-    delete document.documentElement.dataset.resumeMotion
-    setResumeOpen(false)
   }
 
   function boop() {
@@ -370,7 +380,7 @@ export default function Home({ markup }) {
               <div>
                 <h1 className="name">Vishnu Kumar</h1>
                 <p className="tagline">
-                  Full Stack Developer / <span className="nowrap">SDE 2 at Meta</span>
+                  Full Stack Developer / <span className="nowrap">Ex Scale AI and Meta</span>
                 </p>
               </div>
             </header>
@@ -458,16 +468,6 @@ export default function Home({ markup }) {
                       <span className="contact-row-label">LinkedIn</span>
                       <kbd className="contact-kbd">L</kbd>
                     </a>
-                  </li>
-                  <li>
-                    <button type="button" className="contact-row" onClick={openResume}>
-                      <RowIcon>
-                        <path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8Z" />
-                        <path d="M14 3.5V8h4.5M9 12.5h6M9 16h4" />
-                      </RowIcon>
-                      <span className="contact-row-label">Resume</span>
-                      <kbd className="contact-kbd">R</kbd>
-                    </button>
                   </li>
                   <li>
                     <button type="button" className="contact-row" onClick={copyEmail}>
@@ -561,33 +561,12 @@ export default function Home({ markup }) {
                   ))}
                 </dl>
               ) : null}
+              <StudySections sections={project.study?.sections} />
               <div className="pv-foot">
                 <button type="button" onClick={closeProject}>back</button>
                 {project.study?.link ? (
                   <a href={project.study.link} target="_blank" rel="noopener">{project.study.linkLabel}</a>
                 ) : null}
-              </div>
-            </div>
-          </div>
-        </div>
-      ) : null}
-      {resumeOpen ? (
-        <div className="rs" data-mode={typeof window !== "undefined" && matchMedia("(max-width: 640px)").matches ? "sheet" : undefined}>
-          <div className="rs-backdrop" onClick={closeResume} />
-          <div className="rs-window" style={{ left: "max(32px, calc(50vw - 410px))", top: 32, width: "min(820px, calc(100vw - 64px))", height: "min(1060px, calc(100vh - 64px))" }}>
-            <div className="rs-bar">
-              <button type="button" className="rs-close" onClick={closeResume} aria-label="Close resume">esc</button>
-              <span className="rs-title">resume.pdf</span>
-              <span className="rs-actions">
-                <a className="rs-action" href="/resume/vishnu-resume.pdf" download>download</a>
-              </span>
-            </div>
-            <div className="rs-body">
-              <div className="rs-page">
-                <img src="/resume/vishnu-resume-1.webp" alt="Resume, page 1" />
-              </div>
-              <div className="rs-page">
-                <img src="/resume/vishnu-resume-2.webp" alt="Resume, page 2" />
               </div>
             </div>
           </div>

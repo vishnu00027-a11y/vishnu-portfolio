@@ -1,5 +1,5 @@
 const ROLES = [
-  { company: "meta", title: "full stack developer / sde 2", note: "current" },
+  { company: "scale.ai · meta", title: "ex scale ai and meta", note: "full stack" },
   { company: "shivank.tech", title: "founder", note: "web and app studio" },
   { company: "worksquare.co", title: "founder", note: "career platform" },
 ]

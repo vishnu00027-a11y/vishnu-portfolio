@@ -291,7 +291,7 @@ export function mountStage(e) {
 
   function onWindowKey(ev) {
     const root = document.documentElement
-    if (root.dataset.intro === "on" || root.dataset.project === "open" || root.dataset.resume === "open") return
+    if (root.dataset.intro === "on" || root.dataset.project === "open") return
     if (ev.defaultPrevented) return
     if (
       ev.target instanceof HTMLElement &&

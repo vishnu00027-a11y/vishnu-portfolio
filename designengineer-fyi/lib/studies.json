@@ -3,42 +3,147 @@
     "title": "WorkSquare",
     "kind": "Founder",
     "headline": "WorkSquare, a community-driven career platform",
-    "summary": "Professional networking, jobs, skill-based communities, karma, recruiter tools, AI matching, and interview preparation.",
+    "summary": "I founded WorkSquare, a bootstrapped Indian career platform that brings job search, skill-based communities, and free voice AI interview prep into one product.",
     "link": "https://worksquare.co",
     "linkLabel": "worksquare.co",
     "details": [
       { "label": "role", "value": "founder" },
       { "label": "product", "value": "career platform" },
-      { "label": "toolkit", "value": "React, Next.js, MongoDB" },
-      { "label": "surface", "value": "web" }
+      { "label": "toolkit", "value": "Next.js, Supabase, Capacitor" },
+      { "label": "surface", "value": "web and Android" }
+    ],
+    "sections": [
+      {
+        "title": "Overview",
+        "body": [
+          "WorkSquare is the career platform I founded and still build. It is made for people who want more than a static job board: a public feed of roles, communities around the work they want, a karma system that makes reputation visible, and recruiter tools in the same product.",
+          "The public site is at worksquare.co. The Android app, WorkSquare: Jobs & Careers, is on Google Play."
+        ]
+      },
+      {
+        "title": "The problem",
+        "body": "Job search is usually split across job boards, message threads, and interview prep tools that do not talk to each other. Hiring teams post in one place and review people in another. WorkSquare puts discovery, conversation, reputation, and applications on one platform."
+      },
+      {
+        "title": "What it does",
+        "items": [
+          "Browse and search open roles by job title, skill, company, location, and remote-work preference, with AI job matching in the product.",
+          "A public job and discussion feed where people can talk through roles, follow companies, and share hiring notes.",
+          "Skill-based career communities, plus karma and reputation that rise with useful comments and trusted activity.",
+          "Save roles, apply when ready, and message hiring teams directly.",
+          "Free voice-based AI interview prep, so you can practice before you talk to a hiring team.",
+          "Recruiter tools in the same product: create a company, post a job, review applications, and message candidates."
+        ]
+      },
+      {
+        "title": "Tech stack",
+        "body": "The web app is Next.js, running on Vercel, with Supabase for the backend and data. The Android app is a Capacitor wrapper around that product."
+      },
+      {
+        "title": "My role",
+        "body": "I founded WorkSquare and I own the product and the engineering."
+      },
+      {
+        "title": "Outcome",
+        "body": "WorkSquare is live on the web at worksquare.co. The Android app went live on Google Play on 15 October 2026."
+      }
     ]
   },
   {
     "title": "TradeFlock",
     "kind": "Network",
-    "headline": "TradeFlock, a fully automated news network",
-    "summary": "A content network that publishes without a manual newsroom in the loop.",
+    "headline": "TradeFlock USA, a US business news site",
+    "summary": "I own the engineering for TradeFlock USA, a US business news site covering markets, technology, finance, and leadership. I work there as an employee. I am not the owner or founder.",
     "link": "https://tradeflock.net",
     "linkLabel": "tradeflock.net",
     "details": [
-      { "label": "role", "value": "full stack" },
-      { "label": "product", "value": "automated publishing" },
-      { "label": "toolkit", "value": "Next.js, Cloudflare" },
+      { "label": "role", "value": "engineering" },
+      { "label": "product", "value": "business news" },
+      { "label": "toolkit", "value": "Next.js, Vercel, Supabase" },
       { "label": "surface", "value": "web" }
+    ],
+    "sections": [
+      {
+        "title": "Overview",
+        "body": "TradeFlock USA publishes US business news at tradeflock.net. The desk covers markets, technology, finance, and leadership, in the tradition of a national business paper. I work on TradeFlock as an employee, and I own the engineering."
+      },
+      {
+        "title": "The problem",
+        "body": "A newsroom at this scale has to move wires into publishable stories every day, keep editors in control of what goes live, and still serve a large, frequently updated site without rebuilding every page by hand."
+      },
+      {
+        "title": "What it does",
+        "items": [
+          "A public news site with sections including Tech, Markets, Leadership, Finance, Success Insights, and a magazine.",
+          "An AI-assisted newsroom with desk bots that help the operation move work through the desks.",
+          "A wire editor publish gate, so stories do not go live until they pass editorial control.",
+          "Daily-cached pages, so the public site stays fast while the desk keeps publishing.",
+          "A dynamic sitemap. It currently lists about 2,000 URLs."
+        ]
+      },
+      {
+        "title": "Tech stack",
+        "body": "I built the site in Next.js, host it on Vercel, and use Supabase for the data layer. The public pages are cached daily."
+      },
+      {
+        "title": "My role",
+        "body": "I work at TradeFlock USA as an employee. I own the engineering for the site and the newsroom tools. I am not the owner or founder of TradeFlock."
+      },
+      {
+        "title": "Outcome",
+        "body": "The site is live at tradeflock.net. The sitemap currently lists about 2,000 URLs, and the main section pages refresh daily."
+      }
     ]
   },
   {
     "title": "People of LA",
     "kind": "Live site",
-    "headline": "People of LA",
+    "headline": "People of LA, a walkable 3D city",
+    "summary": "People of LA is a stylised 3D Los Angeles you can walk through in the browser, and meet fictional residents across Hollywood, Santa Monica, Venice, and Downtown.",
     "link": "https://peopleofla.online",
-    "linkLabel": "peopleofla.online"
+    "linkLabel": "peopleofla.online",
+    "details": [
+      { "label": "role", "value": "full stack" },
+      { "label": "product", "value": "3D city" },
+      { "label": "toolkit", "value": "WebGL, Node.js, Supabase" },
+      { "label": "surface", "value": "web" }
+    ],
+    "sections": [
+      {
+        "title": "Overview",
+        "body": "People of LA is a browser experience: a stylised 3D Los Angeles you can walk through, and a set of fictional residents placed across the city. It is live at peopleofla.online."
+      },
+      {
+        "title": "The problem",
+        "body": "Most city sites describe a place with articles and photographs. I wanted a site you could actually walk, and where the people of the city were part of the map, not a separate directory."
+      },
+      {
+        "title": "What it does",
+        "items": [
+          "A walkable 3D Los Angeles in the browser, built on a WebGL city client.",
+          "Fictional residents you can meet across Hollywood, Santa Monica, Venice, and Downtown.",
+          "A membership layer: applications go under review, and approved members come from a Supabase project."
+        ]
+      },
+      {
+        "title": "Tech stack",
+        "body": "The city client is WebGL. A Node.js server serves the site and the membership API. Membership and approvals use Supabase. The live site is hosted on Vercel."
+      },
+      {
+        "title": "My role",
+        "body": "I built and shipped People of LA, including the city pack, the membership flow, and the live site."
+      },
+      {
+        "title": "Outcome",
+        "body": "The site is live at peopleofla.online."
+      }
+    ]
   },
   {
     "title": "Documento",
     "kind": "Documents",
     "headline": "Documento, an all-in-one document editor",
-    "summary": "Documento is an offline Android document editor. It opens and edits Word, Excel, PDF, TXT, Markdown and image files right on your phone, with no servers or cloud, so confidential files never leave the device.",
+    "summary": "Documento is an offline Android document editor I built at Shivank Tech. It opens and edits Word, Excel, PDF, TXT, Markdown and image files right on your phone, with no account and no cloud, so confidential files never leave the device.",
     "link": "https://play.google.com/store/apps/details?id=com.shivanktech.documento",
     "linkLabel": "play.google.com",
     "details": [
@@ -46,30 +151,112 @@
       { "label": "product", "value": "document editor" },
       { "label": "toolkit", "value": "Android" },
       { "label": "surface", "value": "Android" }
+    ],
+    "sections": [
+      {
+        "title": "Overview",
+        "body": "Documento is a private, offline workspace for documents, PDFs, notes, and everyday tasks. I built it at Shivank Tech as an Android app. There is no account and no cloud dependency. Your files stay on the device."
+      },
+      {
+        "title": "The problem",
+        "body": "A lot of document work still means uploading files to someone else's servers. That is a bad fit for confidential paperwork. Documento keeps the work on the phone, so you can edit, scan, and organize without a cloud account."
+      },
+      {
+        "title": "What it does",
+        "items": [
+          "Open and edit Word, Excel, PDF, TXT, Markdown, and image files on the phone. It does not include PowerPoint.",
+          "PDF tools: read and view, create PDFs from images and text, edit text and pictures, comments, highlights and drawings, fill and sign, merge files, rearrange and crop pages, compress, password-protect, export, and read documents aloud.",
+          "Scan paper documents with the camera and convert photos into PDFs, then work with the scans on the device.",
+          "Notes with text and images, to-do lists you can check off, and voice notes you record and play back in the same workspace.",
+          "Browse the workspace by All, Notes, To-Do, and PDFs, and jump back to recent files."
+        ]
+      },
+      {
+        "title": "Tech stack",
+        "body": "Documento is a native Android app from Shivank Tech. It is designed to work completely offline, with no account and no cloud."
+      },
+      {
+        "title": "My role",
+        "body": "I built Documento at Shivank Tech."
+      },
+      {
+        "title": "Outcome",
+        "body": "Documento is live on Google Play."
+      }
     ]
   },
   {
     "title": "Canvas",
     "kind": "Editor",
-    "headline": "Canvas, a photo and video editor",
-    "summary": "An editor for photos and video, built as its own application rather than a filter bolted onto a feed.",
+    "headline": "Canvas, a photo and video editing hub",
+    "summary": "Canvas is a mobile photo and video editing hub I built at Shivank Tech. It is a dedicated editor, with quick tools, templates, and video actions, rather than a filter bolted onto a feed.",
     "details": [
       { "label": "role", "value": "full stack" },
       { "label": "product", "value": "photo and video" },
-      { "label": "toolkit", "value": "Expo, React" },
-      { "label": "surface", "value": "app" }
+      { "label": "surface", "value": "Android" }
+    ],
+    "sections": [
+      {
+        "title": "Overview",
+        "body": "Canvas is an Android photo and video editor from Shivank Tech. You can use the core editing features without creating an account. Photos and videos you select stay yours. The app processes them so you can adjust, retouch, apply presets, crop, transform, and export."
+      },
+      {
+        "title": "The problem",
+        "body": "A lot of mobile editing is buried inside a social feed. Canvas is a dedicated hub for people who want to edit photos and videos as their own work, with tools and templates in one place."
+      },
+      {
+        "title": "What it does",
+        "items": [
+          "Quick editing tools for everyday photo work, including retouch, presets, and related adjustments.",
+          "Photo templates, including featured looks such as Soft Light, Noir, and Golden Hour, plus create options for photos, video, presets, and retouch.",
+          "Video quick actions, including trim, resize, and text, with featured video templates such as Reel, Title, and Countdown.",
+          "A curated templates library, so you can start from a designed look instead of a blank canvas."
+        ]
+      },
+      {
+        "title": "My role",
+        "body": "I built Canvas at Shivank Tech."
+      },
+      {
+        "title": "Outcome",
+        "body": "Canvas is an Android app from Shivank Tech. Core editing does not require an account."
+      }
     ]
   },
   {
     "title": "Booking systems",
     "kind": "Appointments",
-    "headline": "Booking systems for appointment businesses",
-    "summary": "Product work for dentists, doctors, barbers, plumbers, and other businesses that live and die by the next appointment.",
+    "headline": "Custom booking systems, built to each customer's needs",
+    "summary": "Through Shivank Tech, I build custom booking systems for local appointment businesses, fitted to how each customer actually takes work: dentists, salons and spas, plumbers, and similar shops.",
     "details": [
       { "label": "role", "value": "product development" },
       { "label": "product", "value": "booking" },
-      { "label": "toolkit", "value": "Ruby on Rails, Next.js" },
       { "label": "surface", "value": "web" }
+    ],
+    "sections": [
+      {
+        "title": "Overview",
+        "body": [
+          "Shivank Tech is my web and app studio. A large part of that work is booking systems for local businesses that run on appointments.",
+          "I do not ship one generic scheduler and hope it fits. Each system is built around that customer's needs: who they serve, how they take bookings, and what has to happen after a slot is taken."
+        ]
+      },
+      {
+        "title": "The problem",
+        "body": "Dentists, clinics, salons, spas, plumbers, and other trades live and die by the next appointment. When booking is buried in a phone call or a generic form, they miss work, double-book, and spend the day chasing confirmations instead of doing the job."
+      },
+      {
+        "title": "What it does",
+        "body": "I design and build the booking product around the business in front of me. That can mean a site a patient or customer can use to request or confirm a time, and the operational pieces that business needs behind it. The exact shape changes with the customer, which is the point."
+      },
+      {
+        "title": "My role",
+        "body": "I lead this work at Shivank Tech: understand the customer's booking problem, then build a system that matches it."
+      },
+      {
+        "title": "Outcome",
+        "body": "This is ongoing product work at Shivank Tech for local appointment businesses. Named live examples belong with the customers those systems were built for, and I will add them here as I can show them properly."
+      }
     ]
   }
 ]
