@@ -38,12 +38,14 @@
     "title": "Documento",
     "kind": "Documents",
     "headline": "Documento, an all-in-one document editor",
-    "summary": "One editor for the documents a team actually passes around, instead of a separate tool for every file type.",
+    "summary": "Documento is an offline Android document editor. It opens and edits Word, Excel, PDF, TXT, Markdown and image files right on your phone, with no servers or cloud, so confidential files never leave the device.",
+    "link": "https://play.google.com/store/apps/details?id=com.shivanktech.documento",
+    "linkLabel": "play.google.com",
     "details": [
       { "label": "role", "value": "full stack" },
       { "label": "product", "value": "document editor" },
-      { "label": "toolkit", "value": "React, Next.js" },
-      { "label": "surface", "value": "web" }
+      { "label": "toolkit", "value": "Android" },
+      { "label": "surface", "value": "Android" }
     ]
   },
   {
