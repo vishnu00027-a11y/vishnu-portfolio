@@ -47,7 +47,10 @@ export const CARDS = [
     kind: "Editor",
     href: "/projects/canvas",
     slug: "canvas",
-    image: "/projects/canvas/poster.svg",
+    image: "/projects/canvas/thumb-loop-poster.webp",
+    poster: "/projects/canvas/thumb-loop-poster.jpg",
+    video: "/projects/canvas/thumb-loop.mp4",
+    videoWebm: "/projects/canvas/thumb-loop.webm",
   },
   {
     title: "Booking systems",
